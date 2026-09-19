@@ -1,0 +1,74 @@
+@model ATMSystem.Models.Customer
+
+@{
+    ViewData["Title"] = "Balance";
+}
+
+<div class="balance-page">
+
+    <div class="balance-box">
+
+        <h1>💰 Balance Inquiry</h1>
+
+        <p>Account Holder</p>
+        <h2>@Model.FullName</h2>
+
+        <p>Account Number</p>
+        <h3>XXXX01</h3>
+        <hr />
+
+        <p>Available Balance</p>
+
+        <div class="amount">
+            ₹ @Model.Balance.ToString("N2")
+        </div>
+
+        <a href="/ATM/Index" class="back-button">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+    .balance-page {
+        min-height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .balance-box {
+        width: 400px;
+        padding: 35px;
+        text-align: center;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .balance-box p {
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .amount {
+        font-size: 35px;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+
+    .back-button {
+        display: block;
+        padding: 12px;
+        background: #1565c0;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+    }
+
+    .back-button:hover {
+        background: #0d47a1;
+    }
+</style>

@@ -1,0 +1,463 @@
+@model ATMSystem.Models.Customer
+
+@{
+    ViewData["Title"] = "ATM Dashboard";
+}
+
+<div class="atm-dashboard">
+
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+
+        <div class="welcome-text">
+            <h1>Welcome Back, @Model.FullName! 👋</h1>
+            <p>Good things take time. Keep going! 😊</p>
+        </div>
+
+        <div class="kids">
+            🧒🏻 👧🏻
+        </div>
+
+    </div>
+
+
+    <!-- Account Information -->
+    <div class="account-card">
+
+        <div class="account-icon">
+            💳
+        </div>
+
+        <div class="account-details">
+            <p>Account Number</p>
+            <h2>@Model.AccountNumber</h2>
+
+            <p>Account Holder</p>
+            <h3>@Model.FullName</h3>
+        </div>
+
+        <div class="balance-details">
+            <p>Available Balance</p>
+            <h1>₹ @Model.Balance.ToString("N2")</h1>
+
+            <span>● Active</span>
+        </div>
+
+    </div>
+
+
+    <!-- ATM Options -->
+    <div class="menu-grid">
+
+        <a href="/ATM/Balance" class="menu-card balance-card">
+            <div class="card-icon">💰</div>
+            <h3>Check Balance</h3>
+            <span>→</span>
+        </a>
+
+        <a href="/ATM/Deposit" class="menu-card deposit-card">
+            <div class="card-icon">🐷</div>
+            <h3>Deposit Money</h3>
+            <span>→</span>
+        </a>
+
+        <a href="/ATM/Withdraw" class="menu-card withdraw-card">
+            <div class="card-icon">💵</div>
+            <h3>Withdraw Money</h3>
+            <span>→</span>
+        </a>
+
+        <a href="/ATM/Transfer" class="menu-card transfer-card">
+            <div class="card-icon">🔄</div>
+            <h3>Transfer Money</h3>
+            <span>→</span>
+        </a>
+
+        <a href="/ATM/Transactions" class="menu-card history-card">
+            <div class="card-icon">📜</div>
+            <h3>Transaction History</h3>
+            <span>→</span>
+        </a>
+
+        <a href="#" class="menu-card pin-card">
+            <div class="card-icon">🔐</div>
+            <h3>Change PIN</h3>
+            <span>→</span>
+        </a>
+
+    </div>
+
+
+    <!-- Cartoon Section -->
+    <div class="cartoon-section">
+
+        <div>
+            <h2>🌟 Save Smart!</h2>
+            <p>Small steps today can create big dreams tomorrow.</p>
+        </div>
+
+        <div class="cartoon">
+            🐼 🐱 🐭
+        </div>
+
+    </div>
+
+
+    <!-- Logout -->
+    <a href="/Account/Logout" class="logout-button">
+        🚪 Logout
+    </a>
+
+</div>
+
+
+<style>
+    body {
+        background: linear-gradient(135deg, #e3f2fd, #fff3e0);
+    }
+
+    .atm-dashboard {
+        max-width: 1200px;
+        margin: auto;
+        padding: 25px;
+    }
+
+
+    /* Welcome */
+
+    .welcome-banner {
+        min-height: 190px;
+        border-radius: 25px;
+        padding: 30px 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background: linear-gradient(135deg,
+                #81d4fa,
+                #b3e5fc,
+                #fff59d);
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+        overflow: hidden;
+    }
+
+    .welcome-text h1 {
+        font-size: 38px;
+        color: #12315c;
+        margin-bottom: 10px;
+    }
+
+    .welcome-text p {
+        font-size: 20px;
+        color: #315b80;
+    }
+
+    .kids {
+        font-size: 90px;
+        white-space: nowrap;
+    }
+
+
+    /* Account Card */
+
+    .account-card {
+        margin-top: 25px;
+
+        display: flex;
+        align-items: center;
+
+        padding: 30px;
+
+        border-radius: 20px;
+
+        background: linear-gradient(135deg,
+                #e1f5fe,
+                #ffffff);
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+    }
+
+    .account-icon {
+        font-size: 55px;
+
+        width: 90px;
+        height: 90px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #42a5f5;
+
+        border-radius: 50%;
+
+        margin-right: 25px;
+    }
+
+    .account-details {
+        flex: 1;
+    }
+
+    .account-details p,
+    .balance-details p {
+        margin: 4px 0;
+        color: #607d8b;
+    }
+
+    .account-details h2 {
+        margin: 0 0 15px;
+        color: #12315c;
+    }
+
+    .account-details h3 {
+        margin: 0;
+        color: #263238;
+    }
+
+    .balance-details {
+        flex: 1;
+        border-left: 2px solid #bbdefb;
+        padding-left: 35px;
+    }
+
+    .balance-details h1 {
+        color: #00a878;
+        font-size: 38px;
+        margin: 8px 0;
+    }
+
+    .balance-details span {
+        color: #00a878;
+        font-weight: bold;
+    }
+
+
+    /* Menu */
+
+    .menu-grid {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 18px;
+
+        margin-top: 25px;
+    }
+
+    .menu-card {
+        min-height: 145px;
+
+        padding: 20px;
+
+        border-radius: 20px;
+
+        text-decoration: none;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        color: white;
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+        transition: 0.25s;
+    }
+
+    .menu-card {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .menu-card:hover {
+        transform: translateY(-10px) scale(1.04);
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+    }
+
+    .menu-card:active {
+        transform: translateY(-2px) scale(0.98);
+    }
+
+    /* Shining effect */
+    .menu-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+
+        background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.35),
+                transparent);
+
+        transform: skewX(-20deg);
+        transition: left 0.5s ease;
+    }
+
+    .menu-card:hover::before {
+        left: 130%;
+    }
+
+    /* Icon animation */
+    .menu-card:hover .card-icon {
+        transform: scale(1.2) rotate(5deg);
+    }
+
+    .card-icon {
+        transition: transform 0.3s ease;
+    }
+
+    /* Arrow animation */
+    .menu-card span {
+        transition: transform 0.3s ease;
+    }
+
+    .menu-card:hover span {
+        transform: translateX(8px);
+    }
+
+    .card-icon {
+        font-size: 45px;
+        margin-bottom: 8px;
+    }
+
+    .menu-card h3 {
+        margin: 5px 0;
+        font-size: 19px;
+    }
+
+    .menu-card span {
+        font-size: 28px;
+    }
+
+
+    /* Different Colors */
+
+    .balance-card {
+        background: linear-gradient(135deg, #43a047, #81c784);
+    }
+
+    .deposit-card {
+        background: linear-gradient(135deg, #7e57c2, #ba68c8);
+    }
+
+    .withdraw-card {
+        background: linear-gradient(135deg, #fb8c00, #ffb74d);
+    }
+
+    .transfer-card {
+        background: linear-gradient(135deg, #ec407a, #f06292);
+    }
+
+    .history-card {
+        background: linear-gradient(135deg, #1e88e5, #64b5f6);
+    }
+
+    .pin-card {
+        background: linear-gradient(135deg, #00acc1, #4dd0e1);
+    }
+
+
+    /* Cartoon */
+
+    .cartoon-section {
+        margin-top: 25px;
+
+        padding: 25px 35px;
+
+        border-radius: 20px;
+
+        background: linear-gradient(135deg,
+                #fff9c4,
+                #e1f5fe);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+    }
+
+    .cartoon-section h2 {
+        color: #283593;
+    }
+
+    .cartoon-section p {
+        color: #546e7a;
+        font-size: 17px;
+    }
+
+    .cartoon {
+        font-size: 70px;
+    }
+
+
+    /* Logout */
+
+    .logout-button {
+        display: block;
+
+        width: 180px;
+
+        margin: 25px auto 10px;
+
+        padding: 13px;
+
+        text-align: center;
+
+        background: #263238;
+
+        color: white;
+
+        text-decoration: none;
+
+        border-radius: 10px;
+
+        font-weight: bold;
+
+        transition: 0.2s;
+    }
+
+    .logout-button:hover {
+        background: #000;
+        transform: translateY(-2px);
+    }
+
+
+    /* Mobile */
+
+    @@media (max-width: 800px) {
+
+        .menu-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .account-card {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .balance-details {
+            border-left: none;
+            border-top: 2px solid #bbdefb;
+            padding: 20px 0 0;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .welcome-text h1 {
+            font-size: 28px;
+        }
+
+        .kids {
+            font-size: 50px;
+        }
+    }
+</style>
